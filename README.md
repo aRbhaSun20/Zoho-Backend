@@ -1,6 +1,6 @@
 # Project-Arnav-backend
 
-Backend Repo for project Arnav
+Backend Repo for project Zoho Contacts Manager Backend
 
 To execute the project in development mode
 
@@ -9,5 +9,6 @@ To execute the project in development mode
 
 To execute the project i production mode
 
->> npm start
->>
+> npm start
+
+Backend is already hosted in heroku and connected with the front end
