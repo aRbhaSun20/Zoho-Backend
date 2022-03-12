@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLNonNull,GraphQLInt } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require("graphql");
 
 const contactSchema = {
   _id: {
@@ -11,7 +11,7 @@ const contactSchema = {
     type: GraphQLString,
   },
   name: { type: GraphQLNonNull(GraphQLString) },
-  phone: { type: GraphQLNonNull(GraphQLInt) },
+  phone: { type: GraphQLNonNull(GraphQLString) },
   email: { type: GraphQLNonNull(GraphQLString) },
 };
 
@@ -23,7 +23,7 @@ const contactOptionalSchema = {
     type: GraphQLString,
   },
   name: { type: GraphQLString },
-  phone: { type: GraphQLInt },
+  phone: { type: GraphQLString },
   email: { type: GraphQLString },
 };
 
