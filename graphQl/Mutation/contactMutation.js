@@ -1,7 +1,12 @@
 const Contact = require("../../models/Contact");
 
 const jwt = require("jsonwebtoken");
-const { contactType, contactSchema } = require("../Schemas/ContactSchema");
+const {
+  contactType,
+  contactSchema,
+  contactOptionalSchema,
+} = require("../Schemas/ContactSchema");
+const { GraphQLNonNull, GraphQLString } = require("graphql");
 require("dotenv").config();
 
 const contactMutation = {
@@ -17,6 +22,31 @@ const contactMutation = {
         return contact;
       }
       throw new Error("Error in contact creation");
+    },
+  },
+  editContact: {
+    type: contactType,
+    description: "Edit Contact",
+    args: {
+      ...contactOptionalSchema,
+    },
+    resolve: async (parent, args) => {
+      const { _id, ...remaining } = args;
+      return await Contact.findOneAndUpdate(
+        { _id },
+        { $set: { ...remaining } },
+        { new: true }
+      );
+    },
+  },
+  deleteContact: {
+    type: contactType,
+    description: "Delete Contact",
+    args: {
+      _id: { type: GraphQLNonNull(GraphQLString) },
+    },
+    resolve: async (parent, args) => {
+      return await Contact.findOneAndRemove({ _id: args._id });
     },
   },
 };

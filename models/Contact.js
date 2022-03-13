@@ -14,7 +14,7 @@ const contactSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   createdAt: {
     type: Date,
-    default: () => DateTime.now().toString(),
+    default: () => DateTime.now().toISO(),
   },
 });
 
